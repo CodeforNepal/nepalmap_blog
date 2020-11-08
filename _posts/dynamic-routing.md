@@ -1,19 +1,52 @@
 ---
-title: 'Dynamic Routing and Static Generation'
-excerpt: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Praesent elementum facilisis leo vel fringilla est ullamcorper eget. At imperdiet dui accumsan sit amet nulla facilities morbi tempus.'
-coverImage: '/assets/blog/dynamic-routing/cover.jpg'
-date: '2020-03-16T05:35:07.322Z'
+title: "Welcome to NepalMap Blog"
+excerpt: "NepalMap makes data on Nepal more accessible and understandable.
+  NepalMap is of great use to journalists, students, academics and
+  others who are interested in using data to learn about Nepal."
+coverImage: "/assets/images/hover_over_graph.png"
+date: "2020-03-16T05:35:07.322Z"
 author:
-  name: JJ Kasper
-  picture: '/assets/blog/authors/jj.jpeg'
+  name: Code for Nepal
+  picture: "/assets/blog/authors/jj.jpeg"
 ogImage:
-  url: '/assets/blog/dynamic-routing/cover.jpg'
+  url: "/assets/images/hover_over_graph.png"
 ---
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Praesent elementum facilisis leo vel fringilla est ullamcorper eget. At imperdiet dui accumsan sit amet nulla facilities morbi tempus. Praesent elementum facilisis leo vel fringilla. Congue mauris rhoncus aenean vel. Egestas sed tempus urna et pharetra pharetra massa massa ultricies.
+NepalMap makes data on Nepal more accessible and understandable.
+NepalMap is of great use to journalists, students, academics and
+others who are interested in using data to learn about Nepal. This
+tool is a friendly and reliable resource for journalists who want to
+use data to tell stories or discover stories that are of public
+interest.
 
-Venenatis cras sed felis eget velit. Consectetur libero id faucibus nisl tincidunt. Gravida in fermentum et sollicitudin ac orci phasellus egestas tellus. Volutpat consequat mauris nunc congue nisi vitae. Id aliquet risus feugiat in ante metus dictum at tempor. Sed blandit libero volutpat sed cras. Sed odio morbi quis commodo odio aenean sed adipiscing. Velit euismod in pellentesque massa placerat. Mi bibendum neque egestas congue quisque egestas diam in arcu. Nisi lacus sed viverra tellus in. Nibh cras pulvinar mattis nunc sed. Luctus accumsan tortor posuere ac ut consequat semper viverra. Fringilla ut morbi tincidunt augue interdum velit euismod.
+NepalMap uses the National Data Profile, created by the
+Central Bureau of Statistics, and other official sources, to create
+user-friendly data visualizations on key demographic issues. You can
+embed, access or download the data too. You can also compare any two
+areas side-by-side. If you would like to access pre-federal data
+from 2011 Population Census, please check out: 2011.nepalmap.org.
 
-## Lorem Ipsum
+NepalMap is a project of Code for Nepal, a non-profit that works to
+increase digital literacy and the use of open data in Nepal. Please
+make a tax deductible donation to help us maintain the server space
+for NepalMap, and empower Nepal digitally! Shoulders of Giants Yes!
+NepalMap is based on Wazimap which is a fork of Census Reporter.
+Wazimap is built and maintained by Code for South Africa. Other
+implementations include Wazimap Kenya and Wazimap South Africa, the
+first Wazimap implementation.
 
-Tristique senectus et netus et malesuada fames ac turpis. Ridiculous mus mauris vitae ultricies leo integer malesuada nunc vel. In mollis nunc sed id semper. Egestas tellus rutrum tellus pellentesque. Phasellus vestibulum lorem sed risus ultricies tristique nulla. Quis blandit turpis cursus in hac habitasse platea dictumst quisque. Eros donec ac odio tempor orci dapibus ultrices. Aliquam sem et tortor consequat id porta nibh. Adipiscing elit duis tristique sollicitudin nibh sit amet commodo nulla. Diam vulputate ut pharetra sit amet. Ut tellus elementum sagittis vitae et leo. Arcu non odio euismod lacinia at quis risus sed vulputate.
+All of these tools are completely open
+source. You can build one for your country. NepalMap code is
+licensed under the MIT License. NepalMap branding is copyright of
+Code for Nepal and cannot be used without permission. Help us
+NepalMap is entirely built by volunteers who are committed to
+ensuring everyone has access to open data about Nepal. We need more
+help.
+
+We are looking for volunteers who can help us add more data,
+and improve NepalMap. If you have the right skills, and would like
+to help, please complete this form! Privacy Policy This website uses
+Google Analytics to help analyse how visitors use this site. Google
+Analytics uses “cookies”, which are small text files placed on your
+computer, to collect standard internet log information and visitor
+behaviour information in an anonymous form.
