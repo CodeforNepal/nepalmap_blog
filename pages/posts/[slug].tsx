@@ -2,15 +2,15 @@ import { useRouter } from 'next/router'
 import ErrorPage from 'next/error'
 import Container from '../../components/container'
 import PostBody from '../../components/post-body'
-import Header from '../../components/header'
 import PostHeader from '../../components/post-header'
 import Layout from '../../components/layout'
 import { getPostBySlug, getAllPosts } from '../../lib/api'
 import PostTitle from '../../components/post-title'
 import Head from 'next/head'
-import { CMS_NAME } from '../../lib/constants'
+import { BLOG_NAME } from '../../lib/constants'
 import markdownToHtml from '../../lib/markdownToHtml'
 import PostType from '../../types/post'
+import Breadcrumb from "../../components/breadcrumbs";
 
 type Props = {
   post: PostType
@@ -26,15 +26,21 @@ const Post = ({ post, morePosts, preview }: Props) => {
   return (
     <Layout preview={preview}>
       <Container>
-        <Header />
         {router.isFallback ? (
           <PostTitle>Loading…</PostTitle>
         ) : (
           <>
+          <Breadcrumb
+            items={[
+              { title: "Home", url: "/" },
+              { title: "Posts", url: `/posts` },
+              { title: post.title, url: `/posts/${post.slug}` },
+            ]}
+          />
             <article className="mb-32">
               <Head>
                 <title>
-                  {post.title} | Next.js Blog Example with {CMS_NAME}
+                  {post.title} | Next.js Blog Example with {BLOG_NAME}
                 </title>
                 <meta property="og:image" content={post.ogImage.url} />
               </Head>
@@ -80,6 +86,7 @@ export async function getStaticProps({ params }: Params) {
         content,
       },
     },
+    revalidate: 1
   }
 }
 
@@ -94,6 +101,6 @@ export async function getStaticPaths() {
         },
       }
     }),
-    fallback: false,
+    fallback: true,
   }
 }

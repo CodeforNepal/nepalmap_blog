@@ -1,4 +1,4 @@
-import { CMS_NAME } from '../lib/constants'
+import { BLOG_NAME } from '../lib/constants'
 
 const Intro = () => {
   return (
@@ -14,7 +14,7 @@ const Intro = () => {
         >
           Next.js
         </a>{' '}
-        and {CMS_NAME}.
+        and {BLOG_NAME}.
       </h4>
     </section>
   )
