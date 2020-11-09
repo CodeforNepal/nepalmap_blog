@@ -7,7 +7,7 @@ const Footer = () => {
       <Container>
         <div className="flex flex-wrap md:max-w-screen-lg mx-auto">
           <section
-            className="relative text-gray-700 font-light font-light border-b px-4 pb-4 md:py-3 w-full md:border-none md:w-1/4"
+            className="relative text-gray-700 font-light border-b px-4 pb-4 md:py-3 w-full md:border-none md:w-1/4"
           >
             <div className="md:hidden">
               <button
@@ -44,7 +44,7 @@ const Footer = () => {
             </article>
           </section>
           <section
-            className="relative text-gray-700 font-light font-light border-b px-4 pb-4 md:py-3 w-full md:border-none md:w-1/4"
+            className="relative text-gray-700 font-light border-b px-4 pb-4 md:py-3 w-full md:border-none md:w-1/4"
           >
             <div className="md:hidden">
               <button
@@ -88,7 +88,7 @@ const Footer = () => {
             </article>
           </section>
           <section
-            className="relative text-gray-700 font-light font-light border-b px-4 pb-4 md:py-3 w-full md:border-none md:w-1/4"
+            className="relative text-gray-700 font-light border-b px-4 pb-4 md:py-3 w-full md:border-none md:w-1/4"
           >
             <div className="md:hidden">
               <button

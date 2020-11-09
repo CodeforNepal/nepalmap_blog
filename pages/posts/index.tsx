@@ -11,7 +11,7 @@ const About: React.FC = () => {
     <>
       <Layout>
         <Head>
-          <title>About {BLOG_NAME}</title>
+          <title>Posts | {BLOG_NAME}</title>
         </Head>
         <Container>
           <Breadcrumb

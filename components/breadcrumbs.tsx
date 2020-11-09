@@ -15,7 +15,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({ items }) => {
                 {items.map((item,itemIndex) => {
                     return (
                         <li key={itemIndex} className="flex items-center">
-                            <Link href={item.url}><a className={`${itemIndex === items.length -1 ? 'text-gray-500' :''}`}>{item.title}</a></Link>
+                            <Link href={item.url}><a className={`${itemIndex === items.length -1 ? 'text-c4n-red' :''}`}>{item.title}</a></Link>
                             {itemIndex !== items.length - 1 && <BreadcrumbsSeperator />}
                         </li>
                     )
