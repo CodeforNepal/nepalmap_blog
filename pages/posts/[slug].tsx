@@ -33,7 +33,7 @@ const Post = ({ post, morePosts, preview }: Props) => {
           <Breadcrumb
             items={[
               { title: "Home", url: "/" },
-              { title: "Posts", url: `/posts` },
+              { title: "Posts", url: `/` },
               { title: post.title, url: `/posts/${post.slug}` },
             ]}
           />

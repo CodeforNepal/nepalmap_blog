@@ -7,7 +7,8 @@ coverImage: "/assets/images/hover_over_graph.png"
 date: "2020-03-16T05:35:07.322Z"
 author:
   name: Code for Nepal
-  picture: "/assets/blog/authors/jj.jpeg"
+  picture: "https://codefornepal.org/assets/img/c4n_logo.png"
+  email: contact@codefornepal.org
 ogImage:
   url: "/assets/images/hover_over_graph.png"
 ---

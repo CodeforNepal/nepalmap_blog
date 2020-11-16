@@ -10,12 +10,12 @@ interface BreadcrumbProps {
 }
 export const Breadcrumb: React.FC<BreadcrumbProps> = ({ items }) => {
     return (
-        <nav className="text-sajilo font-bold mb-8" aria-label="Breadcrumb">
+        <nav className="text-sajilo mb-8" aria-label="Breadcrumb">
             <ol className="list-none p-0 inline-flex">
                 {items.map((item,itemIndex) => {
                     return (
                         <li key={itemIndex} className="flex items-center">
-                            <Link href={item.url}><a className={`${itemIndex === items.length -1 ? 'text-c4n-red' :''}`}>{item.title}</a></Link>
+                            <Link href={item.url}><a className={`${itemIndex === items.length -1 ? 'text-gray-600' :''}`}>{item.title}</a></Link>
                             {itemIndex !== items.length - 1 && <BreadcrumbsSeperator />}
                         </li>
                     )
