@@ -33,14 +33,14 @@ const Post = ({ post, morePosts, preview }: Props) => {
           <Breadcrumb
             items={[
               { title: "Home", url: "/" },
-              { title: "Posts", url: `/posts` },
+              { title: "Posts", url: `/` },
               { title: post.title, url: `/posts/${post.slug}` },
             ]}
           />
             <article className="mb-32">
               <Head>
                 <title>
-                  {post.title} | Next.js Blog Example with {BLOG_NAME}
+                  {post.title} | {BLOG_NAME}
                 </title>
                 <meta property="og:image" content={post.ogImage.url} />
               </Head>
