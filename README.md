@@ -12,7 +12,6 @@ NepalMap is a project of Code for Nepal, a non-profit that works to increase dig
 
 # Frameworks
 - Next.js
-- Express.js
 - TailwindCSS
 
 # Development
