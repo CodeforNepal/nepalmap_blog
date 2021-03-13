@@ -8,6 +8,7 @@
     "typecheck": "tsc"
   },
   "dependencies": {
+    "axios": "^0.21.1",
     "classnames": "2.2.6",
     "date-fns": "2.19.0",
     "final-form": "^4.20.2",
