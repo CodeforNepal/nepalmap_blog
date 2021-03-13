@@ -3,7 +3,7 @@ import nextConnect, { RequestHandler } from "next-connect";
 import type { NextApiRequest, NextApiResponse } from "next";
 
 const connectDatabase = async () => {
-  await connect(process.env.MONGO_URL || "mongodb://localhost/nepaldata", {
+  await connect(process.env.DATABASE_URL || "mongodb://localhost/nepaldata", {
     useUnifiedTopology: true,
     useFindAndModify: false,
     useCreateIndex: true,

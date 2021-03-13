@@ -8,8 +8,6 @@ handler.use(middleware);
 
 handler.get(getAllBlogs)
 
-handler.use(verifyJWT)
-
 handler.post(createBlog)
 
 export default handler

@@ -1,26 +1,65 @@
 import { Session } from "next-auth"
-import { useSession,signIn } from "next-auth/client"
-import { useRouter } from "next/router"
+import { useSession, signIn } from "next-auth/client"
+import { Form } from 'react-final-form'
 import { useEffect } from "react"
+import { BlogsAttr } from "../../lib/models/blogs"
+import { Input } from "../../components/final-form"
 
-interface CustomSession extends Session{
+interface CustomSession extends Session {
   idToken?: string
 }
+
+type Blogs = Omit<BlogsAttr, 'author' | 'slug' | 'createdAt' | 'updatedAt'>
+
+const initialValues: Blogs = {
+  title: '',
+  contents: '',
+  banner: '',
+  excerpt: '',
+}
 const Index = () => {
-  const [ session, loading ] = useSession()
-  useEffect(()=>{
-    if(!session && !loading){
+  const [session, loading] = useSession()
+  useEffect(() => {
+    if (!session && !loading) {
       signIn('google')
     }
-    console.log((session as CustomSession)?.idToken)
-  },[session, loading])
+  }, [session, loading])
 
-  if(!session){
-    return null
+  const handleSubmit = (values: Blogs) => {
+
   }
+
+  if (!session) {
+    return <>Login to continue</>
+  }
+
   return (
     <>
-      Admin
+      <div className="flex items-center min-h-screen bg-gray-50 dark:bg-gray-900">
+        <div className="md:w-1/2 container mx-auto">
+          <div className="mx-auto my-10 bg-white p-5 rounded-md shadow-sm">
+            <div className="text-center">
+              <h1 className="my-3 text-3xl font-semibold text-gray-700 dark:text-gray-200">Post Blog</h1>
+              {/* <p className="text-gray-400 dark:text-gray-400"></p> */}
+            </div>
+            <Form
+              onSubmit={handleSubmit}
+              initialValues={initialValues}
+              render={(props) => {
+                const { handleSubmit } = props
+                return (
+                  <form onSubmit={handleSubmit}>
+                    <Input name="title" type="text" label="Title" placeholder="Enter Tile for blog" />
+                    <Input name="banner" type="text" label="Banner" placeholder="Enter banner image link" />
+                    <Input name="excerpt" type="textarea" label="Excerpt" placeholder="Enter short summary" />
+                    <Input name="content" type="markdown" label="Content" placeholder="Blog Description" />
+                  </form>
+                )
+              }}
+            />
+          </div>
+        </div>
+      </div>
     </>
   )
 }
@@ -29,6 +68,6 @@ export default Index
 
 export const getStaticProps = async () => {
   return {
-    props: { },
+    props: {},
   }
 }

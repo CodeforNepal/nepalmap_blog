@@ -11,6 +11,7 @@ export interface BlogsAttr {
   updatedAt: number;
   banner: string;
   slug: string;
+  excerpt: string;
 }
 
 interface BlogsDocument extends mongoose.Document, BlogsAttr {}
@@ -26,6 +27,10 @@ export const blogsSchema = new mongoose.Schema<
       type: String,
       required: true,
     },
+    excerpt: {
+        type: String,
+        required: true,
+      },
     author: {
       type: authorSchema,
       required: true,

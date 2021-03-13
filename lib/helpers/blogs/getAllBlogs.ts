@@ -1,6 +1,10 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import {Blogs} from '../../models/blogs'
+import {BlogsModel} from '../../models/blogs'
+import { getSession } from 'next-auth/client'
+
 export const getAllBlogs = async (req:NextApiRequest, res: NextApiResponse) => {
-    const blogs = await Blogs.find({})
+    const session = await getSession({ req })
+    console.log(session)
+    const blogs = await BlogsModel.find({})
     return res.status(200).json({ blogs });
 }
