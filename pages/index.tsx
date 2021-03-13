@@ -7,14 +7,17 @@ import { getAllPosts } from '../lib/api'
 import Head from 'next/head'
 import { BLOG_NAME } from '../lib/constants'
 import Post from '../types/post'
+import { getRecentBlogsHelper } from '../lib/helpers/blogs'
+import { connectDatabase } from '../middleware/database'
+import { BlogsAttr } from '../lib/models'
 
 type Props = {
-  allPosts: Post[]
+  recentBlogs: BlogsAttr[]
 }
 
-const Index = ({ allPosts }: Props) => {
-  const heroPost = allPosts[0]
-  const morePosts = allPosts.slice(1)
+const Index = ({ recentBlogs }: Props) => {
+  const heroPost = recentBlogs[0]
+  const morePosts = recentBlogs.slice(1)
   return (
     <>
       <Layout>
@@ -26,8 +29,8 @@ const Index = ({ allPosts }: Props) => {
           {heroPost && (
             <HeroPost
               title={heroPost.title}
-              coverImage={heroPost.coverImage}
-              date={heroPost.date}
+              coverImage={heroPost.banner}
+              date={heroPost.createdAt}
               author={heroPost.author}
               slug={heroPost.slug}
               excerpt={heroPost.excerpt}
@@ -42,17 +45,11 @@ const Index = ({ allPosts }: Props) => {
 
 export default Index
 
-export const getStaticProps = async () => {
-  const allPosts = getAllPosts([
-    'title',
-    'date',
-    'slug',
-    'author',
-    'coverImage',
-    'excerpt',
-  ])
-
+export const getServerSideProps = async () => {
+  await connectDatabase()
+  const recentBlogs = await getRecentBlogsHelper()
+  const stringBlogs = JSON.stringify(recentBlogs)
   return {
-    props: { allPosts },
+    props: { recentBlogs: JSON.parse(stringBlogs) },
   }
 }

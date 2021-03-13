@@ -8,5 +8,9 @@ export const getAllBlogs = async (req:NextApiRequest, res: NextApiResponse) => {
 }
 
 export const getAllBlogsHelper = (query:any) => {
-    return BlogsModel.find({})
+    return BlogsModel.find({}).sort({createdAt:'desc'})
+}
+
+export const getRecentBlogsHelper = () => {
+    return BlogsModel.find({},{},{limit:5,skip:0}).sort({createdAt:'desc'})
 }

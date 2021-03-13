@@ -1,8 +1,9 @@
 import PostPreview from './post-preview'
 import Post from '../types/post'
+import { BlogsAttr } from '../lib/models'
 
 type Props = {
-  posts: Post[]
+  posts: BlogsAttr[]
 }
 
 const MoreStories = ({ posts }: Props) => {
@@ -16,8 +17,8 @@ const MoreStories = ({ posts }: Props) => {
           <PostPreview
             key={post.slug}
             title={post.title}
-            coverImage={post.coverImage}
-            date={post.date}
+            coverImage={post.banner}
+            date={post.createdAt}
             author={post.author}
             slug={post.slug}
             excerpt={post.excerpt}

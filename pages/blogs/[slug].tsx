@@ -1,10 +1,8 @@
 import { useRouter } from 'next/router'
-import ErrorPage from 'next/error'
 import Container from '../../components/container'
 import PostBody from '../../components/post-body'
 import PostHeader from '../../components/post-header'
 import Layout from '../../components/layout'
-import { getPostBySlug, getAllPosts } from '../../lib/api'
 import PostTitle from '../../components/post-title'
 import Head from 'next/head'
 import { BLOG_NAME } from '../../lib/constants'
@@ -13,7 +11,7 @@ import PostType from '../../types/post'
 import Breadcrumb from "../../components/breadcrumbs";
 import { getBlogBySlugHelper } from '../../lib/helpers/blogs'
 import { connectDatabase } from '../../middleware/database'
-import { Author, BlogsAttr } from '../../lib/models'
+import { BlogsAttr } from '../../lib/models'
 
 type Props = {
   blog: BlogsAttr
@@ -74,22 +72,18 @@ type Params = {
 export async function getServerSideProps({ params }: Params) {
   const {slug} = params
   await connectDatabase()
-  const blog: BlogsAttr & {_id:Object} = await getBlogBySlugHelper(slug as string).lean()
+  const blog: BlogsAttr = await getBlogBySlugHelper(slug as string).lean()
   if (!blog) {
     return {
       notFound: true,
     }
   }
   blog.contents = await markdownToHtml(blog.contents || '')
-  blog._id = blog._id?.toString()
-  blog.createdAt = new Date(blog.createdAt).toDateString()
-  blog.updatedAt = new Date(blog.updatedAt).toDateString()
-  const author: Author & {_id?:Object} = blog.author 
-  author._id = author?._id?.toString()
-  
+  const string = JSON.stringify(blog)
+  const serialized = JSON.parse(string)
   return {
     props: {
-      blog:{...blog,author},
+      blog:serialized,
     },
   }
 }
