@@ -258,11 +258,11 @@ const Footer = () => {
         >
           <div>
             <p className="leading-8 tracking-wide">
-              &copy; Code for Nepal, 2020
+              {/* &copy; Code for Nepal, 2020 */}
             </p>
           </div>
           <div>
-            <p className="leading-8 tracking-wide">Privacy Policy</p>
+            {/* <p className="leading-8 tracking-wide">Privacy Policy</p> */}
           </div>
         </section>
       </div>

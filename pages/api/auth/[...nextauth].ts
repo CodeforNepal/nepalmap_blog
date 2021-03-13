@@ -64,7 +64,6 @@ export default NextAuth({
       return `${baseUrl}/admin`
      },
     async session(session, user) { 
-      console.log({session,user})
       if((user as any)?.idToken){
         (session as any).idToken = (user as any).idToken
       }

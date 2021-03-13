@@ -22,10 +22,11 @@ const PostHeader = ({ title, coverImage, date, author }: Props) => {
       <div className="width-1/4 text-right text-sm font-bold text-gray-700"><DateFormatter dateString={date} /></div>
 
       </div>
-    </PostBodyContainer>
       <div className="mb-8 md:mb-16 md:mt-20 sm:mx-0">
         <CoverImage title={title} src={coverImage} />
       </div>
+    </PostBodyContainer>
+     
       <div className="max-w-2xl mx-auto">
         <div className="block md:hidden mb-6">
           <Avatar {...author} />

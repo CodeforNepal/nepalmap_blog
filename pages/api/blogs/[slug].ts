@@ -1,13 +1,10 @@
 import nextConnect from 'next-connect';
-import verifyJWT  from '../../../middleware/verifyJWT';
-import { getAllBlogs, createBlog } from "../../../lib/helpers/blogs";
+import { getBlogBySlug } from "../../../lib/helpers/blogs";
 import middleware from '../../../middleware/database';
 
 const handler = nextConnect();
 handler.use(middleware);
 
-handler.get(getAllBlogs)
-
-handler.post(createBlog)
+handler.get(getBlogBySlug)
 
 export default handler

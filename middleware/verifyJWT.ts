@@ -17,6 +17,7 @@ const verifyJWT: RequestHandler<NextApiRequest, NextApiResponse> = async (
     if(!token){
         return res.status(401).json({message:'Unauthorized'})
     }
+    
     return next()
    }catch(err){
        return res.status(401).json(JSON.stringify(err))
