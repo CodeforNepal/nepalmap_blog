@@ -8,15 +8,20 @@ export interface BlogsAttr {
   title: string;
   author: Author;
   contents: string;
-  createdAt: number;
-  updatedAt: number;
+  createdAt: string;
+  updatedAt: string;
   banner: string;
   slug: string;
   excerpt: string;
 }
 
 interface BlogsDocument extends mongoose.Document, BlogsAttr {}
-type BlogsModelType = mongoose.Model<BlogsDocument>;
+interface BlogsQueryHelper {
+  bySlug(slug:string): mongoose.QueryWithHelpers<BlogsAttr,BlogsDocument>
+}
+interface BlogsModelType extends mongoose.Model<BlogsDocument,BlogsQueryHelper>{
+  // findOneBySlug(slug:string):BlogsDocument
+}
 
 export const blogsSchema = new mongoose.Schema<
   BlogsDocument,
@@ -69,10 +74,14 @@ blogsSchema.virtual("comments", {
   foreignField: "blog",
   justOne: false,
 });
+
+blogsSchema.query.bySlug = function (slug:string) {
+  return this.where({slug})
+}
 // fix for model already defined in development mode because of hot reload
 let BlogsModel: BlogsModelType;
 try {
-  BlogsModel = mongoose.model(BLOG_MODEL);
+  BlogsModel = mongoose.model(BLOG_MODEL) as BlogsModelType;
 } catch (err) {
   BlogsModel = mongoose.model(BLOG_MODEL, blogsSchema);
 }
@@ -84,8 +93,8 @@ export interface CommentsAttr {
     comment: string;
     rating?: number;
     author?: Author;
-    createdAt: number;
-    updatedAt: number;
+    createdAt: string;
+    updatedAt: string;
 }
 
 interface CommentsDocument extends mongoose.Document, CommentsAttr {}

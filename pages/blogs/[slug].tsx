@@ -11,18 +11,18 @@ import { BLOG_NAME } from '../../lib/constants'
 import markdownToHtml from '../../lib/markdownToHtml'
 import PostType from '../../types/post'
 import Breadcrumb from "../../components/breadcrumbs";
+import { getBlogBySlugHelper } from '../../lib/helpers/blogs'
+import { connectDatabase } from '../../middleware/database'
+import { Author, BlogsAttr } from '../../lib/models'
 
 type Props = {
-  post: PostType
+  blog: BlogsAttr
   morePosts: PostType[]
   preview?: boolean
 }
 
-const Post = ({ post, morePosts, preview }: Props) => {
+const Post = ({ blog, morePosts, preview }: Props) => {
   const router = useRouter()
-  if (!router.isFallback && !post?.slug) {
-    return <ErrorPage statusCode={404} />
-  }
   return (
     <Layout preview={preview}>
       <Container>
@@ -34,23 +34,23 @@ const Post = ({ post, morePosts, preview }: Props) => {
             items={[
               { title: "Home", url: "/" },
               { title: "Posts", url: `/` },
-              { title: post.title, url: `/posts/${post.slug}` },
+              { title: blog.title, url: `/blogs/${blog.slug}` },
             ]}
           />
             <article className="mb-32">
               <Head>
                 <title>
-                  {post.title} | {BLOG_NAME}
+                  {blog.title} | {BLOG_NAME}
                 </title>
-                <meta property="og:image" content={post.ogImage.url} />
+                <meta property="og:image" content={blog.banner} />
               </Head>
               <PostHeader
-                title={post.title}
-                coverImage={post.coverImage}
-                date={post.date}
-                author={post.author}
+                title={blog.title}
+                coverImage={blog.banner}
+                date={blog.createdAt}
+                author={blog.author}
               />
-              <PostBody content={post.content} />
+              <PostBody content={blog.contents} />
             </article>
           </>
         )}
@@ -67,40 +67,26 @@ type Params = {
   }
 }
 
-export async function getStaticProps({ params }: Params) {
-  const post = getPostBySlug(params.slug, [
-    'title',
-    'date',
-    'slug',
-    'author',
-    'content',
-    'ogImage',
-    'coverImage',
-  ])
-  const content = await markdownToHtml(post.content || '')
-
+export async function getServerSideProps({ params }: Params) {
+  const {slug} = params
+  await connectDatabase()
+  const blog: BlogsAttr & {_id:Object} = await getBlogBySlugHelper(slug as string).lean()
+  console.log(blog,slug)
+  if (!blog) {
+    console.log("here")
+    return {
+      notFound: true,
+    }
+  }
+  blog.contents = await markdownToHtml(blog.contents || '')
+  blog._id = blog._id?.toString()
+  blog.createdAt = new Date(blog.createdAt).toDateString()
+  blog.updatedAt = new Date(blog.updatedAt).toDateString()
+  const author: Author & {_id?:Object} = blog.author 
+  author._id = author?._id?.toString()
   return {
     props: {
-      post: {
-        ...post,
-        content,
-      },
+      blog:{...blog,author},
     },
-    revalidate: 1
-  }
-}
-
-export async function getStaticPaths() {
-  const posts = getAllPosts(['slug'])
-
-  return {
-    paths: posts.map((posts) => {
-      return {
-        params: {
-          slug: posts.slug,
-        },
-      }
-    }),
-    fallback: true,
   }
 }
