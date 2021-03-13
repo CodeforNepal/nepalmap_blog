@@ -42,6 +42,10 @@ const Post = ({ blog, morePosts, preview }: Props) => {
                 <title>
                   {blog.title} | {BLOG_NAME}
                 </title>
+                <meta
+        name="description"
+        content={blog.excerpt}
+      />
                 <meta property="og:image" content={blog.banner} />
               </Head>
               <PostHeader
@@ -71,9 +75,7 @@ export async function getServerSideProps({ params }: Params) {
   const {slug} = params
   await connectDatabase()
   const blog: BlogsAttr & {_id:Object} = await getBlogBySlugHelper(slug as string).lean()
-  console.log(blog,slug)
   if (!blog) {
-    console.log("here")
     return {
       notFound: true,
     }
@@ -84,6 +86,7 @@ export async function getServerSideProps({ params }: Params) {
   blog.updatedAt = new Date(blog.updatedAt).toDateString()
   const author: Author & {_id?:Object} = blog.author 
   author._id = author?._id?.toString()
+  
   return {
     props: {
       blog:{...blog,author},
