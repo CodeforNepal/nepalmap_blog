@@ -28,7 +28,7 @@ export const Input: React.FC<InputProps & {formProps:FormRenderProps<any>}> = (p
                 <div className="mb-6">
                 {label && <label htmlFor={rest.id || name} className="block mb-2 text-sm text-gray-600 dark:text-gray-400">{label}</label>}
                 {Component && <Component {...rest} {...input} handleChange={change} />} {/** handleChange is used by markdown only */}
-                {meta.touched && meta.error && <span>{meta.error}</span>}
+                {meta.touched && meta.error && <span className="text-red-400 text-xs">{meta.error}</span>}
                 
                 </div>
             )}

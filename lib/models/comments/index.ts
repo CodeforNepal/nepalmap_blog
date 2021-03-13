@@ -31,13 +31,20 @@ export const commentsSchema = new mongoose.Schema<CommentsDocument,CommentsModel
     rating: {
         type: Number,
     },
-    createdAt: {
-        type: Number,
+},{
+    toJSON: {
+      transform(_, ret) {
+        ret.id = ret._id;
+        delete ret._id;
+        delete ret.__v;
+      },
+      virtuals: true,
     },
-    updatedAt: {
-        type: Number,
-    }
-});
+    toObject: {
+      virtuals: true,
+    },
+    timestamps: true,
+  });
 
 // fix for model already defined in development mode because of hot reload
 let CommentsModel:CommentsModelType

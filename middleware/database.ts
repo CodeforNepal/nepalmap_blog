@@ -1,4 +1,4 @@
-import { connect, connections, connection } from "mongoose";
+import mongoose,{ connect, connections, connection } from "mongoose";
 import nextConnect, { RequestHandler } from "next-connect";
 import type { NextApiRequest, NextApiResponse } from "next";
 

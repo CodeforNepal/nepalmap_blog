@@ -2,7 +2,8 @@ import mongoose from "mongoose";
 import { AnyType } from "../../../@types";
 import { BLOG_MODEL, COMMENT_MODEL } from "../../constants/model";
 import { Author, authorSchema } from "../author";
-
+const slug = require('mongoose-slug-updater');
+mongoose.plugin(slug)
 export interface BlogsAttr {
   title: string;
   author: Author;
@@ -44,13 +45,7 @@ export const blogsSchema = new mongoose.Schema<
     },
     slug: {
       type: String,
-      required: true,
-    },
-    createdAt: {
-      type: Number,
-    },
-    updatedAt: {
-      type: Number,
+      slug: "title", slugPaddingSize: 4,  unique: true 
     },
   },
   {
@@ -65,6 +60,7 @@ export const blogsSchema = new mongoose.Schema<
     toObject: {
       virtuals: true,
     },
+    timestamps: true,
   }
 );
 blogsSchema.virtual("comments", {
