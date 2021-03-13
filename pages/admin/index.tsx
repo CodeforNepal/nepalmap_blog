@@ -45,14 +45,14 @@ const Index = () => {
             <Form
               onSubmit={handleSubmit}
               initialValues={initialValues}
-              render={(props) => {
-                const { handleSubmit } = props
+              render={(formProps) => {
+                const { handleSubmit } = formProps
                 return (
                   <form onSubmit={handleSubmit}>
-                    <Input name="title" type="text" label="Title" placeholder="Enter Tile for blog" />
-                    <Input name="banner" type="text" label="Banner" placeholder="Enter banner image link" />
-                    <Input name="excerpt" type="textarea" label="Excerpt" placeholder="Enter short summary" />
-                    <Input name="content" type="markdown" label="Content" placeholder="Blog Description" />
+                    <Input formProps={formProps} name="title" type="text" label="Title" placeholder="Enter Tile for blog" />
+                    <Input formProps={formProps} name="banner" type="text" label="Banner" placeholder="Enter banner image link" />
+                    <Input formProps={formProps} name="excerpt" type="textarea" label="Excerpt" placeholder="Enter short summary" />
+                    <Input formProps={formProps} name="content" type="markdown" label="Content" placeholder="Blog Description" />
                   </form>
                 )
               }}
